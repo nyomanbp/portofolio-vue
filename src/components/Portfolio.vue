@@ -32,6 +32,7 @@ const projects: Project[] = [
     description: 'Livestream event production',
     videoId: 'umGZRhxEmEk',
   },
+  // Add other projects here
   {
     title: '[FINAL DAY] Thunder Tournament Season 8',
     description: 'Livestream event production',
@@ -104,9 +105,14 @@ const reversedProjects = [...projects].reverse();
 import { ref } from 'vue';
 
 const activeProjectIndex = ref(0);
+const loadedVideos = ref(new Set<number>());
 
 function onSlideChange(swiper: any) {
   activeProjectIndex.value = swiper.activeIndex;
+}
+
+function loadVideo(index: number) {
+  loadedVideos.value.add(index);
 }
 </script>
 
@@ -124,25 +130,51 @@ function onSlideChange(swiper: any) {
         class="w-full max-w-4xl mx-auto mt-32 md:mt-0"
         @slideChange="onSlideChange"
       >
-        <SwiperSlide v-for="project in reversedProjects" :key="project.title">
+        <SwiperSlide
+          v-for="(project, index) in reversedProjects"
+          :key="project.title"
+          @click="loadVideo(index)"
+        >
           <div class="aspect-video bg-black rounded-lg overflow-hidden">
-            <iframe
-              :src="`https://www.youtube.com/embed/${project.videoId}`"
-              class="w-full h-full"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            >
-            </iframe>
+            <template v-if="loadedVideos.has(index)">
+              <iframe
+                :src="`https://www.youtube.com/embed/${project.videoId}`"
+                class="w-full h-full"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              >
+              </iframe>
+            </template>
+            <template v-else>
+              <div
+                class="relative w-full h-full flex items-center justify-center bg-gray-800 cursor-pointer"
+                @click="loadVideo(index)"
+              >
+                <img
+                  :src="`https://img.youtube.com/vi/${project.videoId}/hqdefault.jpg`"
+                  alt="Video Thumbnail"
+                  class="absolute inset-0 w-full h-full object-cover"
+                />
+                <div class="relative z-10 text-white">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="w-12 h-12"
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </div>
+            </template>
           </div>
         </SwiperSlide>
       </Swiper>
-      <!-- Buatkan kodenya disini -->
       <div class="mt-8 text-center">
         <h3 class="text-xl font-semibold">{{ reversedProjects[activeProjectIndex].title }}</h3>
         <p class="text-gray-600">{{ reversedProjects[activeProjectIndex].description }}</p>
       </div>
-      <!-- Akhir kode tambahan -->
     </div>
   </section>
 </template>

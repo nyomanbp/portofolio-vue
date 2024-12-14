@@ -28,7 +28,15 @@
         <div class="relative">
           <div class="md:aspect-square rounded-lg overflow-hidden shadow-lg">
             <div class="w-fit h-fit flex items-center justify-center">
-              <img src="https://idox9vv.sufydely.com/projectPorto/abouthd.jpg" alt="" clas />
+              <!-- Explicit width and height added -->
+              <img
+                src="https://idox9vv.sufydely.com/projectPorto/About.webp"
+                alt="Profile Image"
+                width="500"
+                height="500"
+                loading="lazy"
+                class="object-cover"
+              />
             </div>
           </div>
         </div>

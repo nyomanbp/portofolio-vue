@@ -14,7 +14,7 @@ const experiences: Experience[] = [
   {
     title: 'Livestreaming Supervisor',
     company: 'PT. Antarestar Global Kreativindo (Antarestar)',
-    period: 'Juli 2024 – Oktober 2024',
+    period: 'Juli 2024 – Desember 2024',
     description: '',
     details: [
       'Bertanggung jawab sebagai livestreaming operator 4 studio agar dapat berjalan dengan baik dan memastikan set studio yang menarik untuk live selama livestreaming berlangsung. Berhasil menjalankan live 100% tanpa terkendala.',
