@@ -10,6 +10,7 @@ import Certifications from './components/Certifications.vue';
 import Portfolio from './components/Portfolio.vue';
 import Contact from './components/Contact.vue';
 import Footer from './components/Footer.vue';
+import Gallery from './components/Gallery.vue';
 </script>
 
 <template>
@@ -24,6 +25,7 @@ import Footer from './components/Footer.vue';
       <Education />
       <Certifications />
       <Portfolio />
+      <Gallery />
       <Contact />
     </main>
     <Footer />
